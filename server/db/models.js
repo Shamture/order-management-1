@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const db = new Sequelize('', '', '', {
   dialect: 'sqlite',
   storage: 'db/order-management-db.sqlite',
-  logging: false
+  logging: false,
 })
 
 const User = db.define('user', {
