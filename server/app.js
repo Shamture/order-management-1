@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const server = require('http').Server(app);
 // const io = require('socket.io')(server);
 const cote = require('cote');
+const models = require('./db/models');
+
+const { Product } = models;
 
 const orderRequester = new cote.Requester({
   name: 'Order Requester',
@@ -11,12 +14,7 @@ const orderRequester = new cote.Requester({
 
 app.use(bodyParser.json());
 
-// app.all('*', (req, res, next) => {
-//     console.log(req.method, req.url)
-//     next();
-// })
-
-app.post('/order/create', (req, res, next) => {
+app.post('/api/order/create', (req, res, next) => {
   orderRequester.send({
     type: 'create_order',
     userId: req.body.userId,
@@ -38,7 +36,7 @@ app.post('/order/create', (req, res, next) => {
   });
 });
 
-app.get('/order/cancel/:id', (req, res, next) => {
+app.get('/api/order/cancel/:id', (req, res, next) => {
   orderRequester.send({
     type: 'cancel_order',
     orderId: req.params.id,
@@ -55,7 +53,7 @@ app.get('/order/cancel/:id', (req, res, next) => {
   });
 });
 
-app.get('/order/status/:id', (req, res, next) => {
+app.get('/api/order/status/:id', (req, res, next) => {
   orderRequester.send({
     type: 'check_order_status',
     orderId: req.params.id,
@@ -68,6 +66,10 @@ app.get('/order/status/:id', (req, res, next) => {
       res.status(200).send(result);
     }
   });
+});
+
+app.get('/api/products', (req, res, next) => {
+  Product.findAll().then(products => res.status(200).send(products));
 });
 
 server.listen(3000);

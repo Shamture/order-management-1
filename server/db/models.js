@@ -1,8 +1,11 @@
 const Sequelize = require('sequelize');
+const path = require('path');
+
+const dbPath = path.join(__dirname, 'order-management-db.sqlite');
 
 const db = new Sequelize('', '', '', {
   dialect: 'sqlite',
-  storage: 'db/order-management-db.sqlite',
+  storage: dbPath,
   logging: false,
 })
 

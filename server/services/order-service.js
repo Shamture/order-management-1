@@ -14,7 +14,6 @@ const { ORDER_UPDATE_INTERVAL_IN_MS, PRODUCT_NOT_PRESENT } = constants;
 const ordersResponder = new cote.Responder({
   name: 'Order Responder',
   namespace: 'order',
-  respondsTo: ['buy'],
 });
 
 const paymentsRequester = new cote.Requester({

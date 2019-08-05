@@ -22,6 +22,7 @@ describe('Order Service', () => {
         productId: 1,
         authPin: 1234,
       }, (err, result) => {
+        console.info(result);
         assert.isNull(err);
         assert.isNotNull(result);
 

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Client</title>
@@ -8,7 +9,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
 <body>
-  <app-root></app-root>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand mr-3">Order Mangement System</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav">
+            <a href="/products" class="nav-item nav-link">Products</a>
+            <a href="#" class="nav-item nav-link">Orders</a>
+            <a href="#" class="nav-item nav-link">Payments</a>
+          </div>
+          <div class="navbar-nav ml-auto">
+            <a href="#" class="nav-item nav-link">Register</a>
+            <a href="#" class="nav-item nav-link">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main role='main' class='container'>
+    <app-root></app-root>
+  </main>
+  <footer class='footer'>
+    <div class='container text-center'>
+      <span class='text-muted'>Copyright &copy; 2019</span>
+    </div>
+  </footer>
 </body>
 </html>

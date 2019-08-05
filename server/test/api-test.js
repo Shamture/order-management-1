@@ -15,7 +15,7 @@ let orderId = 0;
 describe('Order API', () => {
   it('should create new order with /order/create API', (done) => {
     chai.request(app)
-      .post('/order/create')
+      .post('/api/order/create')
       .send({
         userId: 1,
         productId: 1,
@@ -32,7 +32,7 @@ describe('Order API', () => {
 
   it('should able to get status of existing order with /order/status API', (done) => {
     chai.request(app)
-      .get(`/order/status/${orderId}`)
+      .get(`/api/order/status/${orderId}`)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -44,7 +44,7 @@ describe('Order API', () => {
 
   it('should able to cancel existing order with /order/cancel API', (done) => {
     chai.request(app)
-      .get(`/order/cancel/${orderId}`)
+      .get(`/api/order/cancel/${orderId}`)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -52,7 +52,7 @@ describe('Order API', () => {
 
         // Check if order is successfully canceled or not
         chai.request(app)
-          .get(`/order/status/${orderId}`)
+          .get(`/api/order/status/${orderId}`)
           .end((err, response) => {
             response.should.have.status(200);
             response.body.should.be.a('object');
