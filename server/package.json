@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "order_service": "COTE_LOG=disable node server/services/order-service.js",
-    "payment_service": "COTE_LOG=disable node server/services/payments-service.js",
-    "test": "COTE_LOG=disable ./node_modules/mocha/bin/mocha"
+    "order_service": "COTE_LOG=disable node services/order-service.js",
+    "payment_service": "COTE_LOG=disable node services/payments-service.js",
+    "test": "COTE_LOG=disable ./node_modules/mocha/bin/mocha",
+    "start": "COTE_LOG=disable node app.js"
   },
   "repository": {
     "type": "git",

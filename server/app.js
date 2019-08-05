@@ -72,6 +72,10 @@ app.get('/api/products', (req, res, next) => {
   Product.findAll().then(products => res.status(200).send(products));
 });
 
+app.get('/api/products/:id', (req, res, next) => {
+  Product.findByPk(req.params.id).then(product => res.status(200).send(product));
+});
+
 server.listen(3000);
 
 module.exports = server;

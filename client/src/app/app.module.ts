@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ProductComponent } from './product/product.component';
+import { ProductDetailsComponent } from './product/product-details.component';
 import { ProductService } from './product/product.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent
+    ProductComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

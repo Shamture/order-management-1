@@ -5,11 +5,15 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProductService {
-  private productsUrl = '/api/products'
+  private productsUrl = '/api/products/'
 
   constructor(private http:HttpClient) { }
 
   getProducts() {
     return this.http.get(this.productsUrl);
+  }
+
+  getProductById(id:Number) {
+    return this.http.get(this.productsUrl + id);
   }
 }

@@ -1,0 +1,22 @@
+{
+  "name": "order-management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/concurrently/bin/concurrently.js \"cd server && npm start\" \"cd server && npm run order_service\" \"cd server && npm run payment_service\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahulrraja/order-management.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rahulrraja/order-management/issues"
+  },
+  "homepage": "https://github.com/rahulrraja/order-management#readme",
+  "dependencies": {
+    "concurrently": "^4.1.1"
+  }
+}

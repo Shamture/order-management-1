@@ -5,10 +5,9 @@
                 <div class="card-title text-center">{{product.name}}</div>
                 <img class="card-img-bottom" src="assets/images/dummy-product.png" alt="Card image"
                     class='img-responsive product-image'>
-
             </div>
             <div class='card-footer text-center'>
-                <a href="#" class="btn btn-primary"><fa name="shopping-cart"></fa> Buy</a>
+                <a [routerLink]="['/product/', product.id]" class="btn btn-primary"><fa name="shopping-cart"></fa> Buy</a>
             </div>
         </div>
     </div>
