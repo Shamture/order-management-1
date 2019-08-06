@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 export class OrderService {
     private createOrderUrl = '/api/order/create'
     private getOrdersUrl = '/api/orders/'
+    private cancelOrderUrl = '/api/order/cancel/'
+    private getOrderUrl = '/api/order/'
 
     constructor(private http: HttpClient) { }
 
@@ -16,5 +18,13 @@ export class OrderService {
 
     getOrdersByUserId(userId: number) {
         return this.http.get(this.getOrdersUrl + userId);
+    }
+
+    cancelOrder(orderId: number) {
+        return this.http.get(this.cancelOrderUrl + orderId);
+    }
+
+    getOrderByOrderId(orderId:number) {
+        return this.http.get(this.getOrderUrl + orderId)
     }
 }

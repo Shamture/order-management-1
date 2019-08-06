@@ -1,16 +1,42 @@
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" id='orderTable'>
     <thead>
         <tr>
             <th>Order Id</th>
             <th>Status</th>
+            <th>Product</th>
+            <th>Amount</th>
             <th>Time</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let order of orders">
+        <tr *ngFor="let order of orders" (click)='showOrderDetails(order.id)'>
             <td>{{ order.id }}</td>
             <td>{{ order.status }}</td>
-            <td>{{ order.updatedAt }}</td>
+            <td><a [routerLink]="['/product/', order.product.id]">{{order.product.name}}</a></td>
+            <td>{{order.totalAmount | currency: 'USD'}}</td>
+            <td>{{ order.updatedAt | date: 'medium' }}</td>
+            <span
+                *ngIf="order.status ==='CREATED' || order.status ==='CONFIRMED' then orderCancelOperation else noOperation"></span>
+            <ng-template #orderCancelOperation>
+                <td><button class='btn-sm btn-danger' (click)='open(content, order.id)'>Cancel Order</button></td>
+            </ng-template>
+            <ng-template #noOperation>
+                <td></td>
+            </ng-template>
         </tr>
     </tbody>
 </table>
+
+<ng-template #content let-modal class="animated fadeInDown">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Cancel Order</h4>
+    </div>
+    <div class='modal-body'>
+        Are you sure, do you want to cancel this order?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)='cancelOrder()'>Yes</button>
+        <button type="button" class="btn btn-danger" (click)="close()">Cancel</button>
+    </div>
+</ng-template>

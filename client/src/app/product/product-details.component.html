@@ -30,14 +30,29 @@
         </div>
         <span *ngIf="product['quantity'] > 0; then productIsAvailable; else productOutOfStock"></span>
         <ng-template #productIsAvailable>
-            <div class='text-bold'>Product Available:</div> {{product['quantity']}}
+            <div class='row'>
+                <div class='col-sm-4'>
+                    <div class='text-bold'>Product Available:</div> {{product['quantity']}}
+                </div>
+                <div class='col-sm-4'>
+                    <div class='text-bold'>Price:</div> {{product['price'] | currency: 'USD'}}
+                </div>
+            </div>
         </ng-template>
-        <ng-template #productOutOfStock>Out Of Stock!</ng-template>
+        <ng-template #productOutOfStock>
+            <div class='row'>
+                <div class='col-sm-12'>Out Of Stock!</div>
+            </div>
+        </ng-template>
 
-        <div class='text-center'>
-            <a href='#' class="btn btn-primary" (click)='open(content)'>
-                <fa name="shopping-cart"></fa> Buy
-            </a>
+        <div class='row margin-top-10'>
+            <div class='col-sm-12'>
+                <div class='text-center'>
+                    <a href='#' class="btn btn-primary" (click)='open(content)'>
+                        <fa name="shopping-cart"></fa> Buy
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -63,6 +78,7 @@
     </form>
 </ng-template>
 
-<ngb-toast *ngIf="showToast" (hide)="showToast = false" [delay]=5000 class="bg-success text-light top-center animated fadeInDown">
+<ngb-toast *ngIf="showToast" (hide)="showToast = false" [delay]=5000
+    class="bg-success text-light top-center animated fadeInDown">
     Order placed successfully!
 </ngb-toast>

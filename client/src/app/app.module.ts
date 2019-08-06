@@ -16,6 +16,7 @@ import { ProductService } from './product/product.service';
 import { OrderService } from './order/order.service';
 import { OrderComponent } from './order/order.component';
 import { PaymentComponent } from './payment/payment.component'
+import { OrderDetailsComponent } from './order/order-details.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PaymentComponent } from './payment/payment.component'
     ProductComponent,
     ProductDetailsComponent,
     OrderComponent,
-    PaymentComponent
+    PaymentComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,

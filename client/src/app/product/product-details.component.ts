@@ -3,9 +3,6 @@ import { ProductService } from './product.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderService } from '../order/order.service';
-import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-product-details',

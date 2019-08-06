@@ -28,4 +28,4 @@ exports.AUTHENTICATION_FAILED = {
   message: 'Authentication Failed',
 };
 
-exports.ORDER_UPDATE_INTERVAL_IN_MS = 30000;
+exports.ORDER_UPDATE_INTERVAL_IN_MS = 60 * 5 * 1000;

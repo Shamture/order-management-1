@@ -1,0 +1,44 @@
+<div class="row product-details">
+    <div class="col-sm-6">
+        <div class="card product-card">
+            <div class="card-body">
+                <div class="card-title text-center">{{order.product['name']}}</div>
+                <img class="card-img-bottom" src="assets/images/dummy-product.png" alt="Card image"
+                    class='img-responsive product-image'>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div>
+            <div class='text-bold'>Description:</div>
+            <p>
+                Ei pro oblique antiopam. Zril utinam omnium ius no, causae fastidii mei ne. Tota veniam exerci id mei.
+                No malis fabulas mei. Eu eum modo partem percipitur.
+
+                Usu no sonet offendit, at apeirian conceptam vel. Vocent consequuntur cum te, ut iusto constituam
+                repudiandae cum. Mediocrem interesset definitiones mei cu, hinc esse justo ex sed. Ne quodsi senserit
+                instructior pro.
+
+                Eum dolorem tibique perpetua eu, cu sed dico stet porro, possit labitur mediocritatem sed ne. Vix
+                probatus oportere senserit ea, ne reformidans dissentiunt eum. Eum id esse partem corrumpit. Et semper
+                scribentur has, ex nec diceret lobortis similique.
+
+                Summo aeque altera at pro. Ut periculis mnesarchum inciderint pro, qui cu ridens scribentur, ne suas
+                nostro interpretaris eos. Eos postulant corrumpit philosophia id. Ea duo fabellas repudiandae, pro
+                euismod probatus persequeris ne.
+            </p>
+        </div>
+        <div class='row'>
+            <div class='col-sm-4'>
+                <div class='text-bold'>Order Status:</div> {{order['status']}}
+            </div>
+            <div class='col-sm-4'>
+                <div class='text-bold'>Total Amount:</div> {{order['totalAmount'] | currency: 'USD'}}
+            </div>
+            <div class='col-sm-4'>
+                <div class='text-bold'>Time:</div> {{order['createdAt']  | date: 'medium'}}
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -81,6 +81,7 @@ app.get('/api/orders/:userId', (req, res, next) => {
     where: {
       userId: parseInt(req.params.userId, 10),
     },
+    include: { model: Product, as: 'product' },
   }).then(orders => res.status(200).send(orders));
 });
 
@@ -90,6 +91,11 @@ app.get('/api/payments/:userId', (req, res, next) => {
       userId: parseInt(req.params.userId, 10),
     },
   }).then(payments => res.status(200).send(payments));
+});
+
+app.get('/api/order/:id', (req, res, next) => {
+  Order.findByPk(req.params.id, { include: [{ model: Product, as: 'product' }] })
+    .then(order => res.status(200).send(order));
 });
 
 server.listen(3000);
