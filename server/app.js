@@ -5,7 +5,7 @@ const server = require('http').Server(app);
 const cote = require('cote');
 const models = require('./db/models');
 
-const { Product } = models;
+const { Product, Order, Payment } = models;
 
 const orderRequester = new cote.Requester({
   name: 'Order Requester',
@@ -27,7 +27,7 @@ app.post('/api/order/create', (req, res, next) => {
       });
     } else {
       res.status(200).send({
-        status: 'Order placed successfull',
+        status: 'Order placed successful',
         orderId: result.orderId,
       });
     }
@@ -74,6 +74,22 @@ app.get('/api/products', (req, res, next) => {
 
 app.get('/api/products/:id', (req, res, next) => {
   Product.findByPk(req.params.id).then(product => res.status(200).send(product));
+});
+
+app.get('/api/orders/:userId', (req, res, next) => {
+  Order.findAll({
+    where: {
+      userId: parseInt(req.params.userId, 10),
+    },
+  }).then(orders => res.status(200).send(orders));
+});
+
+app.get('/api/payments/:userId', (req, res, next) => {
+  Payment.findAll({
+    where: {
+      userId: parseInt(req.params.userId, 10),
+    },
+  }).then(payments => res.status(200).send(payments));
 });
 
 server.listen(3000);

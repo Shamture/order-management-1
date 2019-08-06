@@ -1,3 +1,68 @@
-<div>
-    <h1>{{product.name}}</h1>
+<div class="row product-details">
+    <div class="col-sm-6">
+        <div class="card product-card">
+            <div class="card-body">
+                <div class="card-title text-center">{{product['name']}}</div>
+                <img class="card-img-bottom" src="assets/images/dummy-product.png" alt="Card image"
+                    class='img-responsive product-image'>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div>
+            <div class='text-bold'>Description:</div>
+            <p>
+                Ei pro oblique antiopam. Zril utinam omnium ius no, causae fastidii mei ne. Tota veniam exerci id mei.
+                No malis fabulas mei. Eu eum modo partem percipitur.
+
+                Usu no sonet offendit, at apeirian conceptam vel. Vocent consequuntur cum te, ut iusto constituam
+                repudiandae cum. Mediocrem interesset definitiones mei cu, hinc esse justo ex sed. Ne quodsi senserit
+                instructior pro.
+
+                Eum dolorem tibique perpetua eu, cu sed dico stet porro, possit labitur mediocritatem sed ne. Vix
+                probatus oportere senserit ea, ne reformidans dissentiunt eum. Eum id esse partem corrumpit. Et semper
+                scribentur has, ex nec diceret lobortis similique.
+
+                Summo aeque altera at pro. Ut periculis mnesarchum inciderint pro, qui cu ridens scribentur, ne suas
+                nostro interpretaris eos. Eos postulant corrumpit philosophia id. Ea duo fabellas repudiandae, pro
+                euismod probatus persequeris ne.
+            </p>
+        </div>
+        <span *ngIf="product['quantity'] > 0; then productIsAvailable; else productOutOfStock"></span>
+        <ng-template #productIsAvailable>
+            <div class='text-bold'>Product Available:</div> {{product['quantity']}}
+        </ng-template>
+        <ng-template #productOutOfStock>Out Of Stock!</ng-template>
+
+        <div class='text-center'>
+            <a href='#' class="btn btn-primary" (click)='open(content)'>
+                <fa name="shopping-cart"></fa> Buy
+            </a>
+        </div>
+    </div>
 </div>
+
+<ng-template #content let-modal class="animated fadeInDown">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Authenticate</h4>
+    </div>
+    <form #paymentForm="ngForm" (ngSubmit)="proceedToBuy(paymentForm.value)">
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="pin">Please enter your pin to continue</label>
+                <div class="input-group">
+                    <input type="password" name="pin" class="form-control" maxlength='4' ngModel>
+                </div>
+            </div>
+            <div class='error-text text-center'>{{error}}</div>
+        </div>
+        <div class="modal-footer">
+            <input type="submit" class="btn btn-success" value='Proceed to Buy'>
+            <button type="button" class="btn btn-danger" (click)="close()">Cancel</button>
+        </div>
+    </form>
+</ng-template>
+
+<ngb-toast *ngIf="showToast" (hide)="showToast = false" [delay]=5000 class="bg-success text-light top-center animated fadeInDown">
+    Order placed successfully!
+</ngb-toast>

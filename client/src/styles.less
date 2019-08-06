@@ -1,12 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+    font-family: 'Source Sans Pro';
+    src        : url("assets/fonts/SourceSansPro-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src        : url("assets/fonts/SourceSansPro-Bold.otf") format("opentype");
+    font-weight: bold;
+}
+
 html {
     position  : relative;
     min-height: 100%;
 }
 
 body {
-    margin-bottom: 60px;
+    margin-bottom: 60px !important;
+    font-family  : 'Source Sans Pro' !important;
 }
 
 .footer {
@@ -16,11 +28,26 @@ body {
     height          : 50px;
     line-height     : 50px;
     background-color: #212529;
-    opacity: 0.8;
+    opacity         : 0.8;
 }
 
 .container {
     width    : auto;
     max-width: 680px;
     padding  : 0 15px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.error-text {
+    color: #90021f;
+    font-size: 14px;
+}
+
+.top-center {
+    position: absolute;
+    top: 10%;
+    left: 40%;
 }
