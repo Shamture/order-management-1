@@ -1,14 +1,13 @@
 <div class="row">
-    <div class="col-sm-3" *ngFor='let product of products'>
-        <div class="card product-card">
-            <div class="card-body">
-                <div class="card-title text-center">{{product.name}}</div>
-                <img class="card-img-bottom" src="assets/images/dummy-product.png" alt="Card image"
-                    class='img-responsive product-image'>
+    <div class="col-sm-3 product" *ngFor='let product of products'>
+        <a [routerLink]="['/product/', product.id]">
+            <div class="card product-card">
+                <div class="card-body">
+                    <div class="card-title text-center">{{product.name}}</div>
+                    <img class="card-img-bottom" src="assets/images/dummy-product.png" alt="Card image"
+                        class='img-responsive product-image'>
+                </div>
             </div>
-            <div class='card-footer text-center'>
-                <a [routerLink]="['/product/', product.id]" class="btn btn-primary"><fa name="eye"></fa> View</a>
-            </div>
-        </div>
+        </a>
     </div>
 </div>

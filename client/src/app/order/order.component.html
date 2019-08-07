@@ -19,7 +19,7 @@
             <span
                 *ngIf="order.status ==='CREATED' || order.status ==='CONFIRMED' then orderCancelOperation else noOperation"></span>
             <ng-template #orderCancelOperation>
-                <td><button class='btn-sm btn-danger' (click)='open(content, order.id)'>Cancel Order</button></td>
+                <td><a href='#' (click)='open(content, order.id)'>Cancel Order</a></td>
             </ng-template>
             <ng-template #noOperation>
                 <td></td>

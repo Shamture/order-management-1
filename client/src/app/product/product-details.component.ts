@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { ProductService } from '../services/product.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderService } from '../services/order.service';
+import { User } from '../models/user';
 
 @Component({
     selector: 'app-product-details',
@@ -13,11 +15,15 @@ export class ProductDetailsComponent implements OnInit {
     public product = {};
     public error;
     public showToast = false;
+    currentUser: User;
 
-    constructor(private productService: ProductService, private route: ActivatedRoute, private modalService: NgbModal, private orderService: OrderService) { }
+    constructor(private productService: ProductService, private route: ActivatedRoute, private modalService: NgbModal, private orderService: OrderService, private authenticationService: AuthenticationService) { }
 
     ngOnInit() {
-        this.fetchProduct();
+        this.authenticationService.currentUser.subscribe(x => {
+            this.currentUser = x
+            this.fetchProduct();
+        });
     }
 
     fetchProduct() {
@@ -49,12 +55,12 @@ export class ProductDetailsComponent implements OnInit {
 
         this.orderService.placeNewOrder({
             productId: this.product['id'],
-            userId: 1,
+            userId: this.currentUser.id,
             authPin: parseInt(data.pin, 10) === NaN ? data.pin : parseInt(data.pin, 10)
         }).subscribe(data => {
             this.close();
             this.fetchProduct();
-            this.showToast = true;        
+            this.showToast = true;
         }, failure => {
             console.log('Error', failure);
             if (failure.status === 400) {

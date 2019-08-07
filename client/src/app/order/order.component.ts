@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-order',
@@ -12,8 +14,9 @@ export class OrderComponent implements OnInit {
   orders = [];
   dtOptions: DataTables.Settings = {};
   cancelOrderId: number = 0;
+  currentUser: User
 
-  constructor(private orderService: OrderService, private modalService: NgbModal, private router: Router) { }
+  constructor(private orderService: OrderService, private modalService: NgbModal, private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -21,11 +24,15 @@ export class OrderComponent implements OnInit {
       pageLength: 10,
       "order": [[4, "desc"]]
     };
-    this.getAllOrders();
+
+    this.authenticationService.currentUser.subscribe(x => {
+      this.currentUser = x
+      this.getAllOrders();
+    });
   }
 
   getAllOrders() {
-    this.orderService.getOrdersByUserId(1).subscribe((orders: any[]) => {
+    this.orderService.getOrdersByUserId(this.currentUser.id).subscribe((orders: any[]) => {
       this.orders = orders;
     })
   }
