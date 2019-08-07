@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { JwtInterceptor } from './helpers/jwt.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,11 +14,12 @@ import { DataTablesModule } from 'angular-datatables';
 
 import { ProductComponent } from './product/product.component';
 import { ProductDetailsComponent } from './product/product-details.component';
-import { ProductService } from './product/product.service';
-import { OrderService } from './order/order.service';
+import { ProductService } from './services/product.service';
+import { OrderService } from './services/order.service';
 import { OrderComponent } from './order/order.component';
 import { PaymentComponent } from './payment/payment.component'
-import { OrderDetailsComponent } from './order/order-details.component'
+import { OrderDetailsComponent } from './order/order-details.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { OrderDetailsComponent } from './order/order-details.component'
     ProductDetailsComponent,
     OrderComponent,
     PaymentComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +38,10 @@ import { OrderDetailsComponent } from './order/order-details.component'
     AngularFontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    DataTablesModule
+    DataTablesModule,
+    ReactiveFormsModule
   ],
-  providers: [ProductService, OrderService],
+  providers: [ProductService, OrderService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

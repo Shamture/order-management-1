@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { ProductService } from './product.service';
+import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { OrderService } from '../order/order.service';
+import { OrderService } from '../services/order.service';
 
 @Component({
     selector: 'app-product-details',

@@ -4,8 +4,13 @@ const server = require('http').Server(app);
 // const io = require('socket.io')(server);
 const cote = require('cote');
 const models = require('./db/models');
+const constants = require('./utils/constants')
+;
+const { AUTHENTICATION_FAILED } = constants;
 
-const { Product, Order, Payment } = models;
+const {
+  Product, Order, Payment, User,
+} = models;
 
 const orderRequester = new cote.Requester({
   name: 'Order Requester',
@@ -13,6 +18,13 @@ const orderRequester = new cote.Requester({
 });
 
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  if (!req.headers.authorization && req.url !== '/api/user/authenticate') {
+    return res.status(403).send(AUTHENTICATION_FAILED);
+  }
+  next();
+});
 
 app.post('/api/order/create', (req, res, next) => {
   orderRequester.send({
@@ -96,6 +108,27 @@ app.get('/api/payments/:userId', (req, res, next) => {
 app.get('/api/order/:id', (req, res, next) => {
   Order.findByPk(req.params.id, { include: [{ model: Product, as: 'product' }] })
     .then(order => res.status(200).send(order));
+});
+
+app.post('/api/user/authenticate', (req, res, next) => {
+  User.findOne({
+    where: {
+      email: req.body.email,
+      password: req.body.password,
+    },
+  }).then((user) => {
+    if (user) {
+      res.status(200).send({
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        token: 'fake-jwt-token',
+      });
+    } else {
+      return res.status(400).send(AUTHENTICATION_FAILED);
+    }
+  });
 });
 
 server.listen(3000);
