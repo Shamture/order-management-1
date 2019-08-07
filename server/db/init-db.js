@@ -16,9 +16,9 @@ function generateMockData() {
         users.push({
           firstName: 'Rahul',
           lastName: 'Raja',
-          email: 'rahulraja.ngp@gmail.com',
-          mobile: '+919021353568',
-          password: 'Tech8092',
+          email: 'test@gmail.com',
+          mobile: '+999999999',
+          password: 'test@1234',
           address: faker.address.streetAddress(),
           credits: 10000,
           auth: {

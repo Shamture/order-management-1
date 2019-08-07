@@ -1,5 +1,5 @@
 # Order Management System
-Small application written in NodeJS to demonstrate order management system.
+Small application written in NodeJS+Angular to demonstrate order management system.
 
 ### Tech Stack
 - Node 10
@@ -41,6 +41,17 @@ $ node db/init-db.js
 ```
 
 #### Start the app
+Go to root directory of the project and execute
+
 ```
 $ npm start
+```
+
+The server will be running on port 3000 and the UI will be running on port 4200 (default)
+
+#### Sample Mock
+To Login to UI use below credentials
+```
+    username: test@gmail.com
+    password: test@1234
 ```
