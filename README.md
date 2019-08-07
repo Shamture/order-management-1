@@ -2,8 +2,13 @@
 Small application written in NodeJS+Angular to demonstrate order management system.
 
 ### Tech Stack
-- Node 10
-- Angular 8
+- [Node 10](https://nodejs.org/en/download/)
+- [Angular 8](https://angular.io/)
+- [Express](https://expressjs.com/)
+- [Sequelize](https://sequelize.readthedocs.io/en/v3/)
+- [SQLite](https://www.sqlite.org/index.html)
+- [COTE](https://github.com/dashersw/cote)
+- [Bootstrap](https://getbootstrap.com/)
 
 ### Setup
 
