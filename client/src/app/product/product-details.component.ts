@@ -52,7 +52,6 @@ export class ProductDetailsComponent implements OnInit {
             userId: 1,
             authPin: parseInt(data.pin, 10) === NaN ? data.pin : parseInt(data.pin, 10)
         }).subscribe(data => {
-            console.log('Success', data);
             this.close();
             this.fetchProduct();
             this.showToast = true;        
