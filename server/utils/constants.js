@@ -28,4 +28,9 @@ exports.AUTHENTICATION_FAILED = {
   message: 'Authentication Failed',
 };
 
+exports.NOT_AUTHORIZED = {
+  code: 'OMS0005',
+  message: 'Not Authorized to perform this operation',
+};
+
 exports.ORDER_UPDATE_INTERVAL_IN_MS = 60 * 5 * 1000;

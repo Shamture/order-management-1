@@ -4,9 +4,11 @@ const server = require('http').Server(app);
 // const io = require('socket.io')(server);
 const cote = require('cote');
 const models = require('./db/models');
-const constants = require('./utils/constants')
-;
-const { AUTHENTICATION_FAILED } = constants;
+const constants = require('./utils/constants');
+
+const { AUTHENTICATION_FAILED, NOT_AUTHORIZED } = constants;
+
+const excludeUrls = ['/api/user/authenticate', '/api/health'];
 
 const {
   Product, Order, Payment, User,
@@ -17,14 +19,20 @@ const orderRequester = new cote.Requester({
   namespace: 'order',
 });
 
+
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-  if (!req.headers.authorization && req.url !== '/api/user/authenticate') {
-    return res.status(403).send(AUTHENTICATION_FAILED);
+  if (!req.headers.authorization && excludeUrls.indexOf(req.url) === -1) {
+    return res.status(403).send(NOT_AUTHORIZED);
   }
   next();
 });
+
+app.get('/api/health', (req, res, next) => res.status(200).send({
+  uptime: Math.round(process.uptime()),
+}));
+
 
 app.post('/api/order/create', (req, res, next) => {
   orderRequester.send({

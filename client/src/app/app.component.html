@@ -7,11 +7,28 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse" *ngIf="currentUser">
                 <div class="navbar-nav">
-                    <a href="/" class="nav-item nav-link"><fa name='product-hunt'></fa> Products</a>
-                    <a href="/orders" class="nav-item nav-link"><fa name='shopping-cart'></fa> Orders</a>
+                    <a href="/" class="nav-item nav-link">
+                        <fa name='product-hunt'></fa> Products
+                    </a>
+                    <a href="/orders" class="nav-item nav-link">
+                        <fa name='shopping-cart'></fa> Orders
+                    </a>
+                    <a href="/health" class="nav-item nav-link">
+                        <fa name='heartbeat'></fa> Health
+                    </a>
                 </div>
+
                 <div class="navbar-nav ml-auto">
-                    <a href="#" class="nav-item nav-link" (click)='logout()'><fa name='sign-out'></fa> Logout</a>
+                    <li ngbDropdown class="nav-item dropdown">
+                        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Welcome, {{currentUser.firstName}} {{currentUser.lastName}}
+                        </a>
+                        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#"><fa name='heartbeat'></fa> Health</a>
+                            <a class="dropdown-item" href="#" (click)='logout()'><fa name='sign-out'></fa>Logout</a>
+                        </div>
+                    </li>                    
                 </div>
             </div>
         </div>
