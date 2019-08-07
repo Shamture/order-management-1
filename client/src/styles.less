@@ -33,7 +33,7 @@ body {
     height          : 50px;
     line-height     : 50px;
     background-color: @navbar-color;
-    color           : @white-color !important;
+    color           : @white-color  !important;
     opacity         : 0.8;
 }
 
@@ -67,11 +67,36 @@ body {
 }
 
 .dropdown-menu {
-    background-color: @navbar-color !important;
+    background-color: @navbar-color  !important;
 
     a {
         &:hover {
-            background-color: @navbar-color !important;
+            background-color: @navbar-color  !important;
         }
     }
+}
+
+.health {
+    font-size: 22px;
+
+    .card {
+        background-color: @card-bg-color;
+        color           : @title-color;
+        height          : 200px;
+
+        .card-body {
+            .row {
+                margin: 10px;
+                border: 1px solid @input-border-color;
+
+                fa {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+
+.big-text {
+    font-size: 70px;
 }

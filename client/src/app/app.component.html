@@ -13,6 +13,9 @@
                     <a href="/orders" class="nav-item nav-link">
                         <fa name='shopping-cart'></fa> Orders
                     </a>
+                    <a href='/health' class="nav-item nav-link">
+                        <fa name='heartbeat'></fa> Health
+                    </a>
                 </div>
 
                 <div class="navbar-nav ml-auto">
@@ -22,10 +25,12 @@
                             Welcome, {{currentUser.firstName}} {{currentUser.lastName}}
                         </a>
                         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#"><fa name='heartbeat'></fa> Health</a>
-                            <a class="dropdown-item" href="#" (click)='logout()'><fa name='sign-out'></fa>Logout</a>
+                            <a class="dropdown-item" href="#" (click)='logout()'>
+                                <fa name='sign-out'></fa>Logout
+                            </a>
+
                         </div>
-                    </li>                    
+                    </li>
                 </div>
             </div>
         </div>

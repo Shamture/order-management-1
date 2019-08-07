@@ -6,6 +6,7 @@ import { OrderComponent } from './order/order.component'
 import { OrderDetailsComponent } from './order/order-details.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard'
+import { HealthComponent } from './health/health.component';
 
 const routes: Routes = [{
   path: '', component: ProductComponent, canActivate: [AuthGuard]
@@ -14,6 +15,9 @@ const routes: Routes = [{
 }, { path: 'orders', component: OrderComponent, canActivate: [AuthGuard] }, { path: 'order/details/:id', component: OrderDetailsComponent, canActivate: [AuthGuard] }, {
   path: 'login',
   component: LoginComponent
+}, {
+  path: 'health',
+  component: HealthComponent
 }];
 
 @NgModule({

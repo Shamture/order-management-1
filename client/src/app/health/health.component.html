@@ -1,0 +1,39 @@
+<div class='health'>
+    <div class='row'>
+        <div class='col-md-3 card'>
+            <div class='card-body'>
+                <div class='text-center text-dark'>Server</div>
+                <div class='text-center'>
+                    <fa name='server' class="big-text"></fa>
+                </div>
+                <div class='text-center text-success'>
+                    <fa name='arrow-circle-up'></fa> UP since {{health['server-uptime'] | amDuration: 'seconds'}}
+                </div>
+            </div>
+        </div>
+        <div class='col-md-1'></div>
+        <div class='col-md-8 card'>
+            <div class='card-body'>
+                <div class='text-center text-dark'>API Status</div>
+                <div class='row'>
+                    <div class='col-md-6 text-center'>
+                        Order API
+                    </div>
+                    <div class='col-md-6' [ngClass]="{'text-success': health['order-api'] === 'UP'}">
+                        <fa name='arrow-circle-up'></fa> {{health['order-api']}}                        
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-6 text-center'>
+                        Payments API
+                    </div>
+                    <div class='col-md-6' [ngClass]="{'text-success' : health['payment-api'] ==='UP'}">
+                        <fa name='arrow-circle-up' ></fa>                        
+                        {{health['payment-api']}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
