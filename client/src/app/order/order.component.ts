@@ -11,26 +11,22 @@ import { User } from '../models/user';
   styleUrls: ['./order.component.less']
 })
 export class OrderComponent implements OnInit {
-  orders = [];
-  dtOptions: DataTables.Settings = {};
+  orders:any = [];
   cancelOrderId: number = 0;
   currentUser: User
-
+  
   constructor(private orderService: OrderService, private modalService: NgbModal, private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      "order": [[4, "desc"]]
-    };
 
     this.authenticationService.currentUser.subscribe(x => {
       this.currentUser = x
+      
       this.getAllOrders();
     });
   }
 
+  
   getAllOrders() {
     this.orderService.getOrdersByUserId(this.currentUser.id).subscribe((orders: any[]) => {
       this.orders = orders;
@@ -48,11 +44,11 @@ export class OrderComponent implements OnInit {
 
   }
 
-  showOrderDetails(orderId: number) {
+  showOrderDetails(event, orderId: number) {
     this.router.navigate(['/order/details', orderId]);
   }
 
-  open(content, orderId: number) {
+  open(event, content, orderId: number) {
     this.cancelOrderId = orderId;
     this.modalService.open(content);
 

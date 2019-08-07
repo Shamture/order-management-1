@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { DataTablesModule } from 'angular-datatables';
 
 import { ProductComponent } from './product/product.component';
 import { ProductDetailsComponent } from './product/product-details.component';
@@ -38,7 +37,6 @@ import { LoginComponent } from './login/login.component';
     AngularFontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    DataTablesModule,
     ReactiveFormsModule
   ],
   providers: [ProductService, OrderService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],

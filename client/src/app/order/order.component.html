@@ -1,4 +1,4 @@
-<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" id='orderTable'>
+<table class='table table-striped'>
     <thead>
         <tr>
             <th>Order Id</th>
@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let order of orders" (click)='showOrderDetails(order.id)'>
+        <tr *ngFor="let order of orders">
             <td>{{ order.id }}</td>
             <td>{{ order.status }}</td>
             <td><a [routerLink]="['/product/', order.product.id]">{{order.product.name}}</a></td>
@@ -19,15 +19,21 @@
             <span
                 *ngIf="order.status ==='CREATED' || order.status ==='CONFIRMED' then orderCancelOperation else noOperation"></span>
             <ng-template #orderCancelOperation>
-                <td><a href='#' (click)='open(content, order.id)'>Cancel Order</a></td>
+                <td><button (click)='showOrderDetails($event, order.id)'>
+                        <fa name='eye'></fa> View Details
+                    </button> &nbsp; <button (click)='open($event, content, order.id)'>
+                        <fa name='ban'></fa> Cancel Order
+                    </button>
+                </td>
             </ng-template>
             <ng-template #noOperation>
-                <td></td>
+                <td><button (click)='showOrderDetails($event, order.id)'>
+                        <fa name='eye'></fa> View Details
+                    </button></td>
             </ng-template>
         </tr>
     </tbody>
 </table>
-
 <ng-template #content let-modal class="animated fadeInDown">
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Cancel Order</h4>

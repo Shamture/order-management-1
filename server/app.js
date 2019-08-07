@@ -102,6 +102,9 @@ app.get('/api/orders/:userId', (req, res, next) => {
       userId: parseInt(req.params.userId, 10),
     },
     include: { model: Product, as: 'product' },
+    order: [
+      ['updatedAt', 'DESC'],
+    ]
   }).then(orders => res.status(200).send(orders));
 });
 
