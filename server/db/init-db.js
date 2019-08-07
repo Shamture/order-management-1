@@ -1,5 +1,6 @@
 const faker = require('faker');
 const models = require('./models');
+let mockProducts = require('./products.json');
 
 const {
   User, Auth, Product, syncDB,
@@ -7,7 +8,6 @@ const {
 
 const users = [];
 const products = [];
-
 
 function generateMockData() {
   return new Promise((resolve) => {
@@ -43,9 +43,11 @@ function generateMockData() {
 
     for (let i = 0; i < 20; i += 1) {
       products.push({
-        name: faker.commerce.productName(),
-        price: faker.commerce.price(),
-        quantity: Math.round(Math.random() * 100),
+        name: mockProducts[i].name,
+        price: parseInt(mockProducts[i].price, 10),
+        description: mockProducts[i].description,
+        imageUrl: mockProducts[i].imageUrl,
+        quantity: Math.round(Math.random() * 100)
       });
     }
 
